@@ -434,11 +434,10 @@ class FretBoardGtr():
 
         upper_extension=extension.upper()
         #test if there is a .svg
-        if len(self.path.split('.svg'))!=2:
+        if not self.path.endswith('.svg'):
             raise ValueError('You need to add the .svg in the path file with the pathname method')
-        elif self.path.split('.svg')[1] != '':
-            raise ValueError('You need to add the .svg in the path file with the pathname method')
-
+            # what would be wrong with having multiple .svg in the path?
+        
         if os.path.isfile(self.path):
             existing=True
         else:

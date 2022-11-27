@@ -62,7 +62,15 @@ class ScaleGtr(FretBoardGtr):
 
         if enharmonic: 
             self.enharmonic_scale = FretBoardGtr.setenharmonic(self.scale)
-
+            
+    # factoring out the size calculation so we can flip easier later on
+    def _calcsize(self):
+        return (self.hf*(self.last_fret-self.first_fret+2),self.wf*(len(self.tuning)+2))
+    
+    def _flipcoordinate(self, coords):
+        size = self._calcsize()
+        return (size[0] - coords[0], coords[1])
+        
 
     def emptybox(self):
         '''
@@ -71,7 +79,7 @@ class ScaleGtr(FretBoardGtr):
 
         self.dwg = svgwrite.Drawing(
         self.path,
-        size=(self.hf*(self.last_fret-self.first_fret+2),self.wf*(len(self.tuning)+2)),
+        size=self._calcsize(),
         profile='tiny'
         )
 
@@ -442,7 +450,7 @@ class ScaleGtr(FretBoardGtr):
         """
         Execute in particular order each important methods to create the board
         """
-        self.emptybox()
+        self.emptybox() # lefthand approved
         self.nut()
         #self.background_fill()
         #self.background_fill_image()
