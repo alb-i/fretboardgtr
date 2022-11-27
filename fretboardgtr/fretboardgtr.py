@@ -7,6 +7,8 @@ class FretBoardGtr():
 
 
     def __init__(self):
+        self.lefthand = False # default to right-hand
+        
         self.tuning=['E','A','D','G','B','E'] # Default tuning
         self.fingering=[0,3,2,0,1,0]
         self._ol=10 # overlay

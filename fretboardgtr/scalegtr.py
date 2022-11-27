@@ -48,8 +48,9 @@ class ChordFromName:
 
 
 class ScaleGtr(FretBoardGtr):
-    def __init__(self,*args,scale=['C','E','G'],root='C', enharmonic=False):
+    def __init__(self,*args,scale=['C','E','G'],root='C', enharmonic=False, lefthand=False):
         FretBoardGtr.__init__(self)
+        self.lefthand = lefthand
         self.enharmonic=enharmonic
         try:
             if isinstance(args[0],ScaleFromName) or isinstance(args[0], ChordFromName):
